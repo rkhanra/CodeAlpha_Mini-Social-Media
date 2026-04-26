@@ -2,21 +2,45 @@
 <html>
 <head>
   <title>Mini Social App</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding-top: 100px;
+      background: #f5f5f5;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+
+    .login { background: #4CAF50; color: white; }
+    .signup { background: #2196F3; color: white; }
+  </style>
 </head>
 
 <body>
 
-<h1>Social Feed</h1>
+<h1>Welcome to Mini Social App</h1>
+<p>Connect, share, and interact</p>
 
-<div class="create-post">
-  <input id="postInput" placeholder="What's on your mind?" />
-  <button onclick="createPost()">Post</button>
-</div>
+<button class="btn login" onclick="goLogin()">Login</button>
+<button class="btn signup" onclick="goSignup()">Signup</button>
 
-<div id="feed"></div>
+<script>
+function goLogin() {
+  window.location.href = "login.html";
+}
 
-<script src="script.js"></script>
+function goSignup() {
+  window.location.href = "signup.html";
+}
+</script>
 
 </body>
 </html>

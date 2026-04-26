@@ -1,0 +1,27 @@
+<!-- feed.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feed</title>
+</head>
+
+<body>
+
+<!-- your UI here -->
+<input id="postInput" placeholder="What's on your mind?" />
+<button onclick="createPost()">Post</button>
+
+<div id="feed"></div>
+
+<!-- 1. your main script -->
+<script src="script.js"></script>
+
+<!-- 2. page-specific logic -->
+<script>
+window.onload = () => {
+  document.getElementById("postInput").focus();
+};
+</script>
+
+</body>
+</html>
