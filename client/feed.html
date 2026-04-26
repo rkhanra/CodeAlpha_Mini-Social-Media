@@ -1,26 +1,87 @@
-<!-- feed.html -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Feed</title>
+  <title>Feed - Mini Social App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- your UI here -->
-<input id="postInput" placeholder="What's on your mind?" />
-<button onclick="createPost()">Post</button>
+<!-- ================= NAVBAR ================= -->
+<div class="navbar">
 
-<div id="feed"></div>
+  <div class="logo">MiniSocial</div>
 
-<!-- 1. your main script -->
+  <div class="nav-links">
+    <button onclick="goTop()">Home</button>
+    <button onclick="scrollToPost()">Create</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+</div>
+
+<!-- ================= LAYOUT WRAPPER ================= -->
+<div class="container">
+
+  <!-- LEFT SIDEBAR (optional but modern UI feel) -->
+  <div class="sidebar">
+    <h3>Menu</h3>
+    <p onclick="scrollToPost()">➕ Create Post</p>
+    <p onclick="goTop()">🏠 Feed</p>
+  </div>
+
+  <!-- MAIN FEED AREA -->
+  <div class="main">
+
+    <!-- CREATE POST CARD -->
+    <div class="create-post" id="createPostBox">
+      <h3>Create a Post</h3>
+      <input id="postInput" placeholder="What's on your mind?" />
+      <button onclick="createPost()" class="primary-btn">Post</button>
+    </div>
+
+    <!-- FEED -->
+    <div id="feed"></div>
+
+  </div>
+
+</div>
+
 <script src="script.js"></script>
 
-<!-- 2. page-specific logic -->
+<!-- ================= PAGE SCRIPT ================= -->
 <script>
+
 window.onload = () => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    window.location.href = "login.html";
+  }
+
   document.getElementById("postInput").focus();
 };
+
+// scroll to post box
+function scrollToPost() {
+  document.getElementById("createPostBox").scrollIntoView({
+    behavior: "smooth"
+  });
+
+  document.getElementById("postInput").focus();
+}
+
+// scroll top
+function goTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// logout
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "index.html";
+}
+
 </script>
 
 </body>

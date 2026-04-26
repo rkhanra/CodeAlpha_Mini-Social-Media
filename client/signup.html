@@ -1,30 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Signup</title>
+  <title>Signup - Mini Social App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h2>Create Account</h2>
+<!-- ================= NAVBAR ================= -->
+<div class="navbar">
+  <div class="logo">MiniSocial</div>
 
-<input id="username" placeholder="Username" />
-<input id="email" placeholder="Email" />
-<input id="password" type="password" placeholder="Password" />
+  <div class="nav-links">
+    <button onclick="goHome()">Home</button>
+    <button onclick="goLogin()">Login</button>
+  </div>
+</div>
 
-<button onclick="signup()">Signup</button>
+<!-- ================= SIGNUP BOX ================= -->
+<div class="auth-container">
 
-<p id="msg"></p>
+  <div class="auth-card">
+    <h2>Create Account 🚀</h2>
+
+    <input id="username" placeholder="Username" />
+    <input id="email" placeholder="Email" />
+    <input id="password" type="password" placeholder="Password" />
+
+    <button class="primary-btn" onclick="signup()">Signup</button>
+
+    <p class="switch-text">
+      Already have an account?
+      <span onclick="goLogin()">Login</span>
+    </p>
+
+    <p id="msg"></p>
+  </div>
+
+</div>
 
 <script>
 const API = "http://localhost:5000";
 
+// ================= NAVIGATION =================
+function goHome() {
+  window.location.href = "index.html";
+}
+
+function goLogin() {
+  window.location.href = "login.html";
+}
+
+// ================= SIGNUP =================
 async function signup() {
   const username = document.getElementById("username").value.trim();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
   const msg = document.getElementById("msg");
 
-  msg.innerText = "Processing...";
+  msg.innerText = "Creating account...";
 
   if (!username || !email || !password) {
     msg.innerText = "All fields are required";
@@ -34,20 +68,14 @@ async function signup() {
   try {
     const res = await fetch(`${API}/auth/signup`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username,
-        email,
-        password
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password })
     });
 
     const data = await res.json();
 
     if (!res.ok) {
-      msg.innerText = data.error;
+      msg.innerText = data.error || "Signup failed";
       return;
     }
 
