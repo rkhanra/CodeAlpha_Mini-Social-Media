@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+</head>
+<body>
+
+<h2>Create Account</h2>
+
+<input id="username" placeholder="Username" />
+<input id="email" placeholder="Email" />
+<input id="password" type="password" placeholder="Password" />
+
+<button onclick="signup()">Signup</button>
+
+<p id="msg"></p>
+
+<script>
+const API = "http://localhost:5000";
+
+async function signup() {
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("msg");
+
+  msg.innerText = "Processing...";
+
+  if (!username || !email || !password) {
+    msg.innerText = "All fields are required";
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/auth/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      msg.innerText = data.error;
+      return;
+    }
+
+    msg.innerText = "Signup successful! Redirecting...";
+
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1000);
+
+  } catch (err) {
+    console.error(err);
+    msg.innerText = "Server not reachable";
+  }
+}
+</script>
+
+</body>
+</html>
