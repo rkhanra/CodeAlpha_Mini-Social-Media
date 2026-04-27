@@ -7,9 +7,7 @@ const User = require('../models/User');
 const SECRET = process.env.JWT_SECRET || "SECRET_KEY";
 
 
-// ==============================
-// ✅ SIGNUP ROUTE
-// ==============================
+//  SIGNUP ROUTE
 router.post('/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -54,9 +52,9 @@ router.post('/signup', async (req, res) => {
 });
 
 
-// ==============================
-// ✅ LOGIN ROUTE
-// ==============================
+
+//  LOGIN ROUTE
+
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;

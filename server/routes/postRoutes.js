@@ -6,9 +6,9 @@ const Comment = require('../models/Comment');
 const auth = require('../middleware/auth');
 
 
-// ==============================
-// ➕ CREATE POST
-// ==============================
+
+//  CREATE POST
+
 router.post('/', auth, async (req, res) => {
   try {
     const { content } = req.body;
@@ -31,9 +31,8 @@ router.post('/', auth, async (req, res) => {
 });
 
 
-// ==============================
-// 📥 GET POSTS
-// ==============================
+
+// GET POSTS
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.find()
@@ -48,9 +47,8 @@ router.get('/', async (req, res) => {
 });
 
 
-// ==============================
-// ❤️ LIKE POST
-// ==============================
+
+// LIKE POST
 router.post('/:id/like', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -79,9 +77,9 @@ router.post('/:id/like', auth, async (req, res) => {
 });
 
 
-// ==============================
-// 💬 COMMENT
-// ==============================
+
+// COMMENT
+
 router.post('/:id/comment', auth, async (req, res) => {
   try {
     const { text } = req.body;
@@ -100,9 +98,8 @@ router.post('/:id/comment', auth, async (req, res) => {
 });
 
 
-// ==============================
-// 📥 GET COMMENTS
-// ==============================
+// GET COMMENTS
+
 router.get('/:id/comments', async (req, res) => {
   const comments = await Comment.find({ post: req.params.id })
     .populate('user', 'username');

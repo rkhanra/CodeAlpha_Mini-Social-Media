@@ -8,9 +8,8 @@ if (!token) {
 // const token = localStorage.getItem("token");
 
 
-// ==============================
-// 📥 LOAD POSTS
-// ==============================
+//  LOAD POSTS
+ 
 async function loadPosts() {
   try {
     const res = await fetch(`${API}/posts`);
@@ -50,9 +49,8 @@ async function loadPosts() {
 }
 
 
-// ==============================
-// ➕ CREATE POST (FIXED)
-// ==============================
+// CREATE POST (FIXED)
+
 async function createPost() {
   const content = document.getElementById("postInput").value.trim();
 
@@ -85,9 +83,9 @@ async function createPost() {
 }
 
 
-// ==============================
-// ❤️ LIKE POST
-// ==============================
+
+//  LIKE POST
+ 
 async function likePost(postId) {
   await fetch(`${API}/posts/${postId}/like`, {
     method: "POST",
@@ -101,9 +99,9 @@ async function likePost(postId) {
 }
 
 
-// ==============================
-// 💬 ADD COMMENT
-// ==============================
+
+//  ADD COMMENT
+
 async function addComment(postId) {
   const text = document.getElementById(`c-${postId}`).value.trim();
 
@@ -122,9 +120,9 @@ async function addComment(postId) {
 }
 
 
-// ==============================
-// 📥 LOAD COMMENTS
-// ==============================
+
+//  LOAD COMMENTS
+ 
 async function loadComments(postId) {
   const res = await fetch(`${API}/posts/${postId}/comments`);
   const comments = await res.json();
@@ -140,7 +138,7 @@ async function loadComments(postId) {
 }
 
 
-// ==============================
-// 🚀 INIT
-// ==============================
+
+//  INIT
+
 loadPosts();

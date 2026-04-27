@@ -1,5 +1,5 @@
 
-/* ================= GLOBAL RESET ================= */
+/*  GLOBAL RESET  */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   color: #222;
 }
 
-/* ================= NAVBAR ================= */
+/*  NAVBAR  */
 .navbar {
   position: sticky;
   top: 0;
@@ -55,14 +55,14 @@ body {
   transform: translateY(-2px);
 }
 
-/* ================= LAYOUT ================= */
+/*  LAYOUT  */
 .container {
   display: flex;
   gap: 20px;
   padding: 20px;
 }
 
-/* ================= SIDEBAR ================= */
+/*  SIDEBAR  */
 .sidebar {
   width: 220px;
   background: white;
@@ -89,12 +89,12 @@ body {
   background: #f0f2f5;
 }
 
-/* ================= MAIN ================= */
+/*  MAIN  */
 .main {
   flex: 1;
 }
 
-/* ================= CREATE POST CARD ================= */
+/*  CREATE POST CARD  */
 .create-post {
   background: white;
   padding: 18px;
@@ -146,7 +146,7 @@ body {
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
-/* ================= POSTS ================= */
+/*  POSTS  */
 #feed {
   display: flex;
   flex-direction: column;
@@ -192,7 +192,7 @@ body {
   background: #ddd;
 }
 
-/* ================= AUTH PAGES ================= */
+/*  AUTH PAGES  */
 .auth-container {
   display: flex;
   justify-content: center;
