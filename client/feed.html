@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Feed - Mini Social App</title>
   <link rel="stylesheet" href="style.css">
@@ -7,82 +8,86 @@
 
 <body>
 
-<!--  NAVBAR  -->
-<div class="navbar">
+  <!--  NAVBAR  -->
+  <div class="navbar">
 
-  <div class="logo">MiniSocial</div>
+    <div class="logo">MiniSocial</div>
 
-  <div class="nav-links">
-    <button onclick="goTop()">Home</button>
-    <button onclick="scrollToPost()">Create</button>
-    <button onclick="logout()">Logout</button>
-  </div>
-
-</div>
-
-<!--  LAYOUT WRAPPER  -->
-<div class="container">
-
-  <!-- LEFT SIDEBAR (optional but modern UI feel) -->
-  <div class="sidebar">
-    <h3>Menu</h3>
-    <p onclick="scrollToPost()">➕ Create Post</p>
-    <p onclick="goTop()">🏠 Feed</p>
-  </div>
-
-  <!-- MAIN FEED AREA -->
-  <div class="main">
-
-    <!-- CREATE POST CARD -->
-    <div class="create-post" id="createPostBox">
-      <h3>Create a Post</h3>
-      <input id="postInput" placeholder="What's on your mind?" />
-      <button onclick="createPost()" class="primary-btn">Post</button>
+    <div class="nav-links">
+      <button onclick="goTop()">Home</button>
+      <button onclick="scrollToPost()">Create</button>
+      <button onclick="window.location.href='profile.html'">Go to Profile</button>
+      <button onclick="logout()">Logout</button>
     </div>
 
-    <!-- FEED -->
-    <div id="feed"></div>
+  </div>
+
+  <!--  LAYOUT WRAPPER  -->
+  <div class="container">
+
+    <!-- LEFT SIDEBAR -->
+
+    
+    <div class="sidebar">
+      <h3>Menu</h3>
+      <p onclick="scrollToPost()">➕ Create Post</p>
+      <p onclick="goTop()">🏠 Feed</p>
+    </div>
+
+    <!-- MAIN FEED AREA -->
+    <div class="main">
+
+      <!-- CREATE POST CARD -->
+      <div class="create-post" id="createPostBox">
+        <h3>Create a Post</h3>
+        <input id="postInput" placeholder="What's on your mind?" />
+        <button onclick="createPost()" class="primary-btn">Post</button>
+      </div>
+
+      <!-- FEED -->
+      <div id="feed"></div>
+
+    </div>
 
   </div>
 
-</div>
+  <script src="script.js"></script>
 
-<script src="script.js"></script>
+  <!--  PAGE SCRIPT  -->
+  <script>
 
-<!--  PAGE SCRIPT  -->
-<script>
+    window.onload = () => {
+      const token = localStorage.getItem("token");
 
-window.onload = () => {
-  const token = localStorage.getItem("token");
+      if (!token) {
+        window.location.href = "login.html";
+      }
 
-  if (!token) {
-    window.location.href = "login.html";
-  }
+      document.getElementById("postInput").focus();
+    };
 
-  document.getElementById("postInput").focus();
-};
+    // scroll to post box
+    function scrollToPost() {
+      document.getElementById("createPostBox").scrollIntoView({
+        behavior: "smooth"
+      });
 
-// scroll to post box
-function scrollToPost() {
-  document.getElementById("createPostBox").scrollIntoView({
-    behavior: "smooth"
-  });
+      document.getElementById("postInput").focus();
+    }
 
-  document.getElementById("postInput").focus();
-}
+    // scroll top
+    function goTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-// scroll top
-function goTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+    // logout
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
+    }
 
-// logout
-function logout() {
-  localStorage.removeItem("token");
-  window.location.href = "index.html";
-}
-
-</script>
+  </script>
 
 </body>
+
 </html>

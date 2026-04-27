@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiniSocial</title>
+
+<style>
+
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+  color: #222;
+}
+
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 24px;
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(10px);
+
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #2c2c2c;
+  color: white;
+  transition: 0.25s;
+}
+
+.nav-links a:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+
+.nav-links button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2c2c2c;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.nav-links button:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+.hero h1 span {
+  color: #4CAF50; /* GREEN ACCENT */
+}
+
+.hero p {
+  max-width: 600px;
+  font-size: 17px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* PRIMARY BUTTON (same as original) */
+.hero a {
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4CAF50, #3fa34d);
+  color: white;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.hero a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">MiniSocial</div>
+
+    <div class="nav-links">
+        <a href="feed.html">Posts</a>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Welcome to <span>MiniSocial</span></h1>
+    <p>
+        Share your thoughts, connect with friends, create posts, and enjoy a modern social platform experience.
+    </p>
+
+    <a href="feed.html">Go To Feed</a>
+</section>
+
+<script>
+function logout(){
+    localStorage.removeItem("token");
+    window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
