@@ -16,7 +16,7 @@
     <div class="nav-links">
       <button onclick="goTop()">Home</button>
       <button onclick="scrollToPost()">Create</button>
-      <button onclick="window.location.href='profile.html'">Go to Profile</button>
+      <button onclick="goMyProfile()">Go to Profile</button>
       <button onclick="logout()">Logout</button>
     </div>
 
@@ -85,6 +85,20 @@
       localStorage.removeItem("token");
       window.location.href = "index.html";
     }
+
+    function goMyProfile() {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const userId = payload.id;
+
+  window.location.href = `profile.html?id=${userId}`;
+}
 
   </script>
 

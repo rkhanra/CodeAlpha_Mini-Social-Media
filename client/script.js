@@ -5,11 +5,11 @@ const token = localStorage.getItem("token");
 if (!token) {
   window.location.href = "login.html";
 }
-// const token = localStorage.getItem("token");
 
 
-//  LOAD POSTS
- 
+// ==============================
+// LOAD POSTS
+// ==============================
 async function loadPosts() {
   try {
     const res = await fetch(`${API}/posts`);
@@ -23,19 +23,23 @@ async function loadPosts() {
       div.className = "post";
 
       div.innerHTML = `
-        <h3>${post.user?.username || "User"}</h3>
+        <h3 style="cursor:pointer;color:#4CAF50"
+            onclick="window.location.href='profile.html?id=${post.user?._id}'">
+            ${post.user?.username || "User"}
+        </h3>
+
         <p>${post.content}</p>
 
         <button onclick="likePost('${post._id}')">
           ❤️ ${post.likes.length}
         </button>
 
-        <div>
+        <div style="margin-top:10px;">
           <input id="c-${post._id}" placeholder="comment..." />
           <button onclick="addComment('${post._id}')">Send</button>
         </div>
 
-        <div id="comments-${post._id}"></div>
+        <div id="comments-${post._id}" style="margin-top:10px;"></div>
       `;
 
       feed.appendChild(div);
@@ -49,12 +53,17 @@ async function loadPosts() {
 }
 
 
-// CREATE POST (FIXED)
 
+// ==============================
+// CREATE POST
+// ==============================
 async function createPost() {
   const content = document.getElementById("postInput").value.trim();
 
-  if (!content) return alert("Write something!");
+  if (!content) {
+    alert("Write something!");
+    return;
+  }
 
   try {
     const res = await fetch(`${API}/posts`, {
@@ -74,6 +83,7 @@ async function createPost() {
     }
 
     document.getElementById("postInput").value = "";
+
     loadPosts();
 
   } catch (err) {
@@ -84,8 +94,9 @@ async function createPost() {
 
 
 
-//  LIKE POST
- 
+// ==============================
+// LIKE POST
+// ==============================
 async function likePost(postId) {
   await fetch(`${API}/posts/${postId}/like`, {
     method: "POST",
@@ -100,8 +111,9 @@ async function likePost(postId) {
 
 
 
-//  ADD COMMENT
-
+// ==============================
+// ADD COMMENT
+// ==============================
 async function addComment(postId) {
   const text = document.getElementById(`c-${postId}`).value.trim();
 
@@ -121,8 +133,9 @@ async function addComment(postId) {
 
 
 
-//  LOAD COMMENTS
- 
+// ==============================
+// LOAD COMMENTS
+// ==============================
 async function loadComments(postId) {
   const res = await fetch(`${API}/posts/${postId}/comments`);
   const comments = await res.json();
@@ -139,6 +152,7 @@ async function loadComments(postId) {
 
 
 
-//  INIT
-
+// ==============================
+// INIT
+// ==============================
 loadPosts();
