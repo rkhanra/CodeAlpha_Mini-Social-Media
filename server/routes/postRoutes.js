@@ -1,15 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const Post = require('../models/Post');
-const Comment = require('../models/Comment');
-const auth = require('../middleware/auth');
-
-
+const Post = require("../models/Post");
+const Comment = require("../models/Comment");
+const auth = require("../middleware/auth");
 
 //  CREATE POST
 
-router.post('/', auth, async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     const { content } = req.body;
 
@@ -20,49 +18,39 @@ router.post('/', auth, async (req, res) => {
     const post = await Post.create({
       user: req.user,
       content,
-      likes: []
+      likes: [],
     });
 
     res.status(201).json(post);
-
   } catch (err) {
     res.status(500).json({ error: "Post creation failed" });
   }
 });
 
-
-
 // GET POSTS
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const posts = await Post.find()
-      .populate('user', 'username')
+      .populate("user", "username")
       .sort({ createdAt: -1 });
 
     res.json(posts);
-
   } catch (err) {
     res.status(500).json({ error: "Fetch failed" });
   }
 });
 
-
-
 // LIKE POST
-router.post('/:id/like', auth, async (req, res) => {
+router.post("/:id/like", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
     const userId = req.user.toString();
 
-    const alreadyLiked = post.likes.some(
-      id => id.toString() === userId
-    );
+    const alreadyLiked = post.likes.some((id) => id.toString() === userId);
 
     if (alreadyLiked) {
-      post.likes = post.likes.filter(
-        id => id.toString() !== userId
-      );
+      post.likes = post.likes.filter((id) => id.toString() !== userId);
     } else {
       post.likes.push(req.user);
     }
@@ -70,39 +58,36 @@ router.post('/:id/like', auth, async (req, res) => {
     await post.save();
 
     res.json(post);
-
   } catch (err) {
     res.status(500).json({ error: "Like failed" });
   }
 });
 
-
-
 // COMMENT
 
-router.post('/:id/comment', auth, async (req, res) => {
+router.post("/:id/comment", auth, async (req, res) => {
   try {
     const { text } = req.body;
 
     const comment = await Comment.create({
       post: req.params.id,
       user: req.user,
-      text
+      text,
     });
 
     res.status(201).json(comment);
-
   } catch (err) {
     res.status(500).json({ error: "Comment failed" });
   }
 });
 
-
 // GET COMMENTS
 
-router.get('/:id/comments', async (req, res) => {
-  const comments = await Comment.find({ post: req.params.id })
-    .populate('user', 'username');
+router.get("/:id/comments", async (req, res) => {
+  const comments = await Comment.find({ post: req.params.id }).populate(
+    "user",
+    "username",
+  );
 
   res.json(comments);
 });

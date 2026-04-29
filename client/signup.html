@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Signup - Mini Social App</title>
   <link rel="stylesheet" href="style.css">
@@ -7,90 +8,91 @@
 
 <body>
 
-<!--  NAVBAR  -->
-<div class="navbar">
-  <div class="logo">MiniSocial</div>
+  <!--  NAVBAR  -->
+  <div class="navbar">
+    <div class="logo">MiniSocial</div>
 
-  <div class="nav-links">
-    <button onclick="goHome()">Home</button>
-    <button onclick="goLogin()">Login</button>
-  </div>
-</div>
-
-<!--  SIGNUP BOX  -->
-<div class="auth-container">
-
-  <div class="auth-card">
-    <h2>Create Account 🚀</h2>
-
-    <input id="username" placeholder="Username" />
-    <input id="email" placeholder="Email" />
-    <input id="password" type="password" placeholder="Password" />
-
-    <button class="primary-btn" onclick="signup()">Signup</button>
-
-    <p class="switch-text">
-      Already have an account?
-      <span onclick="goLogin()">Login</span>
-    </p>
-
-    <p id="msg"></p>
+    <div class="nav-links">
+      <button onclick="goHome()">Home</button>
+      <button onclick="goLogin()">Login</button>
+    </div>
   </div>
 
-</div>
+  <!--  SIGNUP BOX  -->
+  <div class="auth-container">
 
-<script>
-const API = "http://localhost:5000";
+    <div class="auth-card">
+      <h2>Create Account 🚀</h2>
 
-//  NAVIGATION 
-function goHome() {
-  window.location.href = "index.html";
-}
+      <input id="username" placeholder="Username" />
+      <input id="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Password" />
 
-function goLogin() {
-  window.location.href = "login.html";
-}
+      <button class="primary-btn" onclick="signup()">Signup</button>
 
-//  SIGNUP 
-async function signup() {
-  const username = document.getElementById("username").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const msg = document.getElementById("msg");
+      <p class="switch-text">
+        Already have an account?
+        <span onclick="goLogin()">Login</span>
+      </p>
 
-  msg.innerText = "Creating account...";
+      <p id="msg"></p>
+    </div>
 
-  if (!username || !email || !password) {
-    msg.innerText = "All fields are required";
-    return;
-  }
+  </div>
 
-  try {
-    const res = await fetch(`${API}/auth/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password })
-    });
+  <script>
+    const API = "http://localhost:5000";
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      msg.innerText = data.error || "Signup failed";
-      return;
+    //  NAVIGATION 
+    function goHome() {
+      window.location.href = "index.html";
     }
 
-    msg.innerText = "Signup successful! Redirecting...";
-
-    setTimeout(() => {
+    function goLogin() {
       window.location.href = "login.html";
-    }, 1000);
+    }
 
-  } catch (err) {
-    console.error(err);
-    msg.innerText = "Server not reachable";
-  }
-}
-</script>
+    //  SIGNUP 
+    async function signup() {
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const msg = document.getElementById("msg");
+
+      msg.innerText = "Creating account...";
+
+      if (!username || !email || !password) {
+        msg.innerText = "All fields are required";
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API}/auth/signup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.innerText = data.error || "Signup failed";
+          return;
+        }
+
+        msg.innerText = "Signup successful! Redirecting...";
+
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1000);
+
+      } catch (err) {
+        console.error(err);
+        msg.innerText = "Server not reachable";
+      }
+    }
+  </script>
 
 </body>
+
 </html>

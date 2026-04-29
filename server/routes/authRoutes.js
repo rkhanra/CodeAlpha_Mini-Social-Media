@@ -1,14 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 const SECRET = process.env.JWT_SECRET || "SECRET_KEY";
 
-
 //  SIGNUP ROUTE
-router.post('/signup', async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -19,7 +18,7 @@ router.post('/signup', async (req, res) => {
 
     // check existing user
     const existingUser = await User.findOne({
-      $or: [{ username }, { email }]
+      $or: [{ username }, { email }],
     });
 
     if (existingUser) {
@@ -33,7 +32,7 @@ router.post('/signup', async (req, res) => {
     const user = await User.create({
       username,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     return res.status(201).json({
@@ -41,21 +40,18 @@ router.post('/signup', async (req, res) => {
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
-      }
+        email: user.email,
+      },
     });
-
   } catch (err) {
     console.error("SIGNUP ERROR:", err);
     return res.status(500).json({ error: "Internal server error" });
   }
 });
 
-
-
 //  LOGIN ROUTE
 
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
@@ -75,20 +71,15 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: "Invalid password" });
     }
 
-    const token = jwt.sign(
-      { id: user._id },
-      SECRET,
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: "7d" });
 
     return res.json({
       token,
       user: {
         id: user._id,
-        username: user.username
-      }
+        username: user.username,
+      },
     });
-
   } catch (err) {
     console.error("LOGIN ERROR:", err);
     return res.status(500).json({ error: "Internal server error" });

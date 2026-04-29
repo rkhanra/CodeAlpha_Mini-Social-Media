@@ -1,143 +1,144 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Profile - MiniSocial</title>
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .profile-layout{
-      display:flex;
-      gap:20px;
-      align-items:flex-start;
-      width:100%;
+    .profile-layout {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      width: 100%;
     }
 
-    .left-panel{
-      width:360px;
-      display:flex;
-      flex-direction:column;
-      gap:20px;
+    .left-panel {
+      width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .profile-card{
-      background:white;
-      border-radius:18px;
-      padding:24px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.07);
+    .profile-card {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
     }
 
-    .avatar{
-      width:78px;
-      height:78px;
-      border-radius:50%;
-      background:linear-gradient(135deg,#4CAF50,#2e8b57);
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:28px;
-      font-weight:700;
-      margin-bottom:14px;
+    .avatar {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4CAF50, #2e8b57);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 14px;
     }
 
-    .profile-card h2{
-      margin-bottom:8px;
+    .profile-card h2 {
+      margin-bottom: 8px;
     }
 
-    .muted{
-      color:#666;
-      font-size:14px;
-      margin-top:4px;
+    .muted {
+      color: #666;
+      font-size: 14px;
+      margin-top: 4px;
     }
 
-    .stats{
-      display:grid;
-      grid-template-columns:1fr 1fr 1fr;
-      gap:12px;
-      margin-top:18px;
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .stat-box{
-      background:#f7f8fb;
-      padding:14px 10px;
-      border-radius:12px;
-      text-align:center;
+    .stat-box {
+      background: #f7f8fb;
+      padding: 14px 10px;
+      border-radius: 12px;
+      text-align: center;
     }
 
-    .stat-box strong{
-      display:block;
-      font-size:18px;
-      margin-bottom:4px;
-      color:#111;
+    .stat-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+      color: #111;
     }
 
-    .section-title{
-      margin-bottom:14px;
-      font-size:18px;
-      font-weight:700;
+    .section-title {
+      margin-bottom: 14px;
+      font-size: 18px;
+      font-weight: 700;
     }
 
-    .password-box input{
-      width:100%;
-      padding:12px;
-      border:1px solid #ddd;
-      border-radius:10px;
-      margin-top:10px;
-      outline:none;
+    .password-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-top: 10px;
+      outline: none;
     }
 
-    .password-box input:focus{
-      border-color:#4CAF50;
-      box-shadow:0 0 0 3px rgba(76,175,80,.12);
+    .password-box input:focus {
+      border-color: #4CAF50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, .12);
     }
 
-    .password-box button{
-      width:100%;
-      margin-top:14px;
+    .password-box button {
+      width: 100%;
+      margin-top: 14px;
     }
 
-    #passMsg{
-      margin-top:10px;
-      font-size:14px;
-      color:#333;
+    #passMsg {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
     }
 
-    .right-panel{
-      flex:1;
+    .right-panel {
+      flex: 1;
     }
 
-    .post-head{
-      margin-bottom:16px;
-      font-size:22px;
-      font-weight:700;
+    .post-head {
+      margin-bottom: 16px;
+      font-size: 22px;
+      font-weight: 700;
     }
 
-    #feed{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
+    #feed {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .post{
-      background:white;
-      border-radius:16px;
-      padding:18px;
-      box-shadow:0 8px 22px rgba(0,0,0,0.06);
+    .post {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
     }
 
-    .post small{
-      color:#777;
-      display:block;
-      margin-top:10px;
+    .post small {
+      color: #777;
+      display: block;
+      margin-top: 10px;
     }
 
-    @media(max-width:900px){
-      .profile-layout{
-        flex-direction:column;
+    @media(max-width:900px) {
+      .profile-layout {
+        flex-direction: column;
       }
 
-      .left-panel{
-        width:100%;
+      .left-panel {
+        width: 100%;
       }
     }
   </style>
@@ -145,320 +146,310 @@
 
 <body>
 
-<div class="navbar">
-  <div class="logo">MiniSocial</div>
+  <div class="navbar">
+    <div class="logo">MiniSocial</div>
 
-  <div class="nav-links">
-    <button onclick="window.location.href='feed.html'">Feed</button>
-    <button onclick="logout()">Logout</button>
+    <div class="nav-links">
+      <button onclick="window.location.href='feed.html'">Feed</button>
+      <button onclick="logout()">Logout</button>
+    </div>
   </div>
-</div>
 
-<div class="container">
+  <div class="container">
 
-  <div class="profile-layout">
+    <div class="profile-layout">
 
-    <!-- LEFT SIDE -->
-    <div class="left-panel">
+      <!-- LEFT SIDE -->
+      <div class="left-panel">
 
-      <!-- PROFILE CARD -->
-      <div class="profile-card">
+        <!-- PROFILE CARD -->
+        <div class="profile-card">
 
-        <div class="avatar" id="avatarLetter">U</div>
+          <div class="avatar" id="avatarLetter">U</div>
 
-        <h2 id="username">Loading...</h2>
+          <h2 id="username">Loading...</h2>
 
-        <p id="email" class="muted"></p>
-        <p id="joined" class="muted"></p>
+          <p id="email" class="muted"></p>
+          <p id="joined" class="muted"></p>
 
-        <div class="stats">
-          <div class="stat-box">
-            <strong id="followers">0</strong>
-            Followers
+          <div class="stats">
+            <div class="stat-box">
+              <strong id="followers">0</strong>
+              Followers
+            </div>
+
+            <div class="stat-box">
+              <strong id="following">0</strong>
+              Following
+            </div>
+
+            <div class="stat-box">
+              <strong id="postsCount">0</strong>
+              Posts
+            </div>
           </div>
 
-          <div class="stat-box">
-            <strong id="following">0</strong>
-            Following
-          </div>
+          <button class="primary-btn" id="followBtn" onclick="toggleFollow()" style="width:100%;margin-top:18px;">
+            Follow
+          </button>
 
-          <div class="stat-box">
-            <strong id="postsCount">0</strong>
-            Posts
-          </div>
         </div>
 
-        <button
-          class="primary-btn"
-          id="followBtn"
-          onclick="toggleFollow()"
-          style="width:100%;margin-top:18px;"
-        >
-          Follow
-        </button>
+        <!-- CHANGE PASSWORD -->
+        <div class="profile-card password-box">
+
+          <div class="section-title">Change Password</div>
+
+          <input type="password" id="currentPassword" placeholder="Current Password">
+
+          <input type="password" id="newPassword" placeholder="New Password">
+
+          <input type="password" id="confirmPassword" placeholder="Confirm New Password">
+
+          <button class="primary-btn" onclick="changePassword()">
+            Update Password
+          </button>
+
+          <p id="passMsg"></p>
+
+        </div>
 
       </div>
 
-      <!-- CHANGE PASSWORD -->
-      <div class="profile-card password-box">
+      <!-- RIGHT SIDE -->
+      <div class="right-panel">
 
-        <div class="section-title">Change Password</div>
+        <div class="post-head">Posts</div>
 
-        <input
-          type="password"
-          id="currentPassword"
-          placeholder="Current Password"
-        >
-
-        <input
-          type="password"
-          id="newPassword"
-          placeholder="New Password"
-        >
-
-        <input
-          type="password"
-          id="confirmPassword"
-          placeholder="Confirm New Password"
-        >
-
-        <button
-          class="primary-btn"
-          onclick="changePassword()"
-        >
-          Update Password
-        </button>
-
-        <p id="passMsg"></p>
+        <div id="feed"></div>
 
       </div>
-
-    </div>
-
-    <!-- RIGHT SIDE -->
-    <div class="right-panel">
-
-      <div class="post-head">Posts</div>
-
-      <div id="feed"></div>
 
     </div>
 
   </div>
 
-</div>
+  <script>
+    const API = "http://localhost:5000";
+    const token = localStorage.getItem("token");
 
-<script>
-const API = "http://localhost:5000";
-const token = localStorage.getItem("token");
-
-if (!token) {
-  window.location.href = "login.html";
-}
-
-const params = new URLSearchParams(window.location.search);
-const userId = params.get("id");
-
-if (!userId) {
-  alert("No user selected");
-  window.location.href = "feed.html";
-}
-
-
-// LOAD PROFILE
-// REPLACE ONLY loadProfile() inside profile.html script
-
-async function loadProfile() {
-  try {
-    const res = await fetch(`${API}/users/${userId}`, {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.error || "Failed");
-      return;
+    if (!token) {
+      window.location.href = "login.html";
     }
 
-    // decode logged in user id
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const myId = payload.id;
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get("id");
 
-    document.getElementById("username").innerText =
-      data.user.username;
-
-    document.getElementById("email").innerText =
-      data.user.email;
-
-    document.getElementById("joined").innerText =
-      "Joined: " + new Date(data.user.createdAt).toDateString();
-
-    document.getElementById("followers").innerText =
-      data.user.followers.length;
-
-    document.getElementById("following").innerText =
-      data.user.following.length;
-
-    document.getElementById("postsCount").innerText =
-      data.postsCount;
-
-    document.getElementById("avatarLetter").innerText =
-      data.user.username.charAt(0).toUpperCase();
-
-
-    // ==========================
-    // FOLLOW BUTTON LOGIC
-    // ==========================
-    const btn = document.getElementById("followBtn");
-
-    if (myId === userId) {
-      btn.style.display = "none";
-    } else {
-      btn.style.display = "block";
-      btn.innerText =
-        data.isFollowing ? "Unfollow" : "Follow";
+    if (!userId) {
+      alert("No user selected");
+      window.location.href = "feed.html";
     }
 
 
-    // ==========================
-    // POSTS
-    // ==========================
-    const feed = document.getElementById("feed");
-    feed.innerHTML = "";
+    // LOAD PROFILE
 
-    if (data.posts.length === 0) {
-      feed.innerHTML = `
+    async function loadProfile() {
+      try {
+        const res = await fetch(`${API}/users/${userId}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          alert(data.error || "Failed");
+          return;
+        }
+
+        // decode logged in user id
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const myId = payload.id;
+
+        document.getElementById("username").innerText =
+          data.user.username;
+
+        document.getElementById("email").innerText =
+          data.user.email;
+
+        document.getElementById("joined").innerText =
+          "Joined: " + new Date(data.user.createdAt).toDateString();
+
+        document.getElementById("followers").innerText =
+          data.user.followers.length;
+
+        document.getElementById("following").innerText =
+          data.user.following.length;
+
+        document.getElementById("postsCount").innerText =
+          data.postsCount;
+
+        document.getElementById("avatarLetter").innerText =
+          data.user.username.charAt(0).toUpperCase();
+
+
+
+        // FOLLOW BUTTON LOGIC
+
+        const btn = document.getElementById("followBtn");
+
+        if (myId === userId) {
+          btn.style.display = "none";
+        } else {
+          btn.style.display = "block";
+          btn.innerText =
+            data.isFollowing ? "Unfollow" : "Follow";
+        }
+
+
+
+        // POSTS
+
+        const feed = document.getElementById("feed");
+        feed.innerHTML = "";
+
+        if (data.posts.length === 0) {
+          feed.innerHTML = `
         <div class="post">
           <p>No posts yet.</p>
         </div>
       `;
-      return;
-    }
+          return;
+        }
 
-    data.posts.forEach(post => {
-      const div = document.createElement("div");
-      div.className = "post";
+        data.posts.forEach(post => {
+          const div = document.createElement("div");
+          div.className = "post";
 
-      div.innerHTML = `
+          div.innerHTML = `
         <p>${post.content}</p>
         <small>${new Date(post.createdAt).toLocaleString()}</small>
       `;
 
-      feed.appendChild(div);
-    });
+          feed.appendChild(div);
+        });
 
-  } catch (err) {
-    console.error(err);
-    alert("Profile load failed");
-  }
-}
-
-
-// FOLLOW / UNFOLLOW
-// REPLACE ONLY toggleFollow() inside profile.html script
-
-async function toggleFollow() {
-
-  // decode logged in user id
-  const payload = JSON.parse(atob(token.split('.')[1]));
-  const myId = payload.id;
-
-  // prevent self follow
-  if (myId === userId) {
-    return;
-  }
-
-  try {
-    const res = await fetch(`${API}/users/${userId}/follow`, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`
+      } catch (err) {
+        console.error(err);
+        alert("Profile load failed");
       }
-    });
+    }
 
-    const data = await res.json();
 
-    if (!res.ok) {
-      alert(data.error || "Action failed");
-      return;
+    // follow and unfollow
+
+    async function toggleFollow() {
+      const btn = document.getElementById("followBtn");
+      const myId = getMyId();
+
+      // Prevent self-follow
+      if (myId === userId) return;
+
+      try {
+        btn.disabled = true;
+
+        const currentlyFollowing =
+          btn.innerText.trim() === "Unfollow";
+
+        const res = await fetch(`${API}/users/${userId}/follow`, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          alert(data.error || "Failed");
+          btn.disabled = false;
+          return;
+        }
+
+        // Instantly update button
+        btn.innerText =
+          currentlyFollowing ? "Follow" : "Unfollow";
+
+        // Refresh counts + followers + posts
+        setTimeout(() => {
+          loadProfile();
+        }, 300);
+
+      } catch (err) {
+        console.error(err);
+        alert("Server error");
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+
+    // CHANGE PASSWORD
+    async function changePassword() {
+
+      const currentPassword =
+        document.getElementById("currentPassword").value.trim();
+
+      const newPassword =
+        document.getElementById("newPassword").value.trim();
+
+      const confirmPassword =
+        document.getElementById("confirmPassword").value.trim();
+
+      const msg = document.getElementById("passMsg");
+
+      if (!currentPassword || !newPassword || !confirmPassword) {
+        msg.innerText = "All fields required";
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        msg.innerText = "New passwords do not match";
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API}/users/change-password`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            currentPassword,
+            newPassword
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.innerText = data.error || "Update failed";
+          return;
+        }
+
+        msg.innerText = "Password updated successfully";
+
+        document.getElementById("currentPassword").value = "";
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirmPassword").value = "";
+
+      } catch (err) {
+        msg.innerText = "Server error";
+      }
+    }
+
+
+    // LOGOUT
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
     }
 
     loadProfile();
-
-  } catch (err) {
-    console.error(err);
-    alert("Follow failed");
-  }
-}
-
-
-// CHANGE PASSWORD
-async function changePassword() {
-
-  const currentPassword =
-    document.getElementById("currentPassword").value.trim();
-
-  const newPassword =
-    document.getElementById("newPassword").value.trim();
-
-  const confirmPassword =
-    document.getElementById("confirmPassword").value.trim();
-
-  const msg = document.getElementById("passMsg");
-
-  if (!currentPassword || !newPassword || !confirmPassword) {
-    msg.innerText = "All fields required";
-    return;
-  }
-
-  if (newPassword !== confirmPassword) {
-    msg.innerText = "New passwords do not match";
-    return;
-  }
-
-  try {
-    const res = await fetch(`${API}/users/change-password`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        currentPassword,
-        newPassword
-      })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      msg.innerText = data.error || "Update failed";
-      return;
-    }
-
-    msg.innerText = "Password updated successfully";
-
-    document.getElementById("currentPassword").value = "";
-    document.getElementById("newPassword").value = "";
-    document.getElementById("confirmPassword").value = "";
-
-  } catch(err) {
-    msg.innerText = "Server error";
-  }
-}
-
-
-// LOGOUT
-function logout() {
-  localStorage.removeItem("token");
-  window.location.href = "index.html";
-}
-
-loadProfile();
-</script>
+  </script>
 
 </body>
+
 </html>

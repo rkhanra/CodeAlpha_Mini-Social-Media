@@ -16,7 +16,9 @@
     <div class="nav-links">
       <button onclick="goTop()">Home</button>
       <button onclick="scrollToPost()">Create</button>
-      <button onclick="goMyProfile()">Go to Profile</button>
+      <button onclick="goProfile()">
+        Go to Profile
+      </button>
       <button onclick="logout()">Logout</button>
     </div>
 
@@ -27,7 +29,7 @@
 
     <!-- LEFT SIDEBAR -->
 
-    
+
     <div class="sidebar">
       <h3>Menu</h3>
       <p onclick="scrollToPost()">➕ Create Post</p>
@@ -86,20 +88,25 @@
       window.location.href = "index.html";
     }
 
-    function goMyProfile() {
-  const token = localStorage.getItem("token");
+    function goProfile() {
+      const token = localStorage.getItem("token");
 
-  if (!token) {
-    window.location.href = "login.html";
-    return;
-  }
+      if (!token) {
+        window.location.href = "login.html";
+        return;
+      }
 
-  const payload = JSON.parse(atob(token.split('.')[1]));
-  const userId = payload.id;
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const myId = payload.id;
 
-  window.location.href = `profile.html?id=${userId}`;
-}
+        window.location.href = `profile.html?id=${myId}`;
 
+      } catch (err) {
+        alert("Invalid session");
+        logout();
+      }
+    }
   </script>
 
 </body>
