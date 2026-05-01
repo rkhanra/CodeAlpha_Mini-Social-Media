@@ -6,22 +6,35 @@ A simple social media application with core features like:
 📝 Posts & Comments
 ❤️ Like System
 ➕ Follow / ❌ Unfollow Users
-🚀 Tech Stack
-
+🚀 Features
+👤 User Features
+User registration & authentication (JWT)
+View user profiles
+Follow / unfollow users
+📝 Post Features
+Create posts
+Like posts
+Comment on posts
+View posts feed
+💬 Interaction Features
+Like system
+Comment system
+Social connections (follow system)
+🧰 Tech Stack
 Frontend
-
 HTML
 CSS
 JavaScript
-
 Backend
-
-Node.js + Express.js
-
+Node.js
+Express.js
 Database
-
-MongoDB (with Mongoose)
-📂 Project Structure
+MongoDB
+Mongoose
+Authentication
+JWT (JSON Web Token)
+bcryptjs
+📁 Project Structure
 mini-social-app/
 │
 ├── server/
@@ -46,52 +59,75 @@ mini-social-app/
 │   ├── script.js
 │
 └── package.json
-⚙️ Setup & Installation
+⚙️ Installation & Setup
 1️⃣ Initialize Project
 npm init -y
 2️⃣ Install Dependencies
 npm install express mongoose cors body-parser
 npm install bcryptjs jsonwebtoken
-🗄️ Run the Application
-3️⃣ Start MongoDB
+3️⃣ Database Setup
 
-Make sure MongoDB is installed and running:
+Make sure MongoDB is installed and running locally:
 
 mongod
-4️⃣ Start Backend Server
+
+MongoDB connection:
+
+mongoose.connect('mongodb://127.0.0.1:27017/social_app');
+4️⃣ Run Backend Server
 node server.js
+
+Server will run at:
+
+http://localhost:5000
 5️⃣ Run Frontend
 
-Open the frontend using Live Server:
+Open:
 
 client/index.html
-🧠 How MongoDB Works in This Project
-mongoose.connect('mongodb://127.0.0.1:27017/social_app');
-What this means:
-Database name: social_app
-If the database does not exist → MongoDB creates it automatically
-Collections are created on first insert:
+
+Recommended:
+
+Use Live Server (VS Code extension)
+🗄️ Database Structure
+
+When MongoDB connects, it creates:
+
+social_app database
 users
 posts
 comments
+
+✔ Collections are created automatically on first data insert.
+
+🧠 How MongoDB Works in This Project
+
+MongoDB connection:
+
+mongoose.connect('mongodb://127.0.0.1:27017/social_app');
+Explanation:
+Database name: social_app
+If it doesn’t exist → MongoDB creates it automatically
+Collections are generated when data is first inserted
 🔍 Verify Database Connection
 
-Open MongoDB Compass and check:
+Use MongoDB Compass and check:
 
 social_app
- ├── users
- ├── posts
- ├── comments
+├── users
+├── posts
+├── comments
 
-If you see these collections, your database is connected successfully ✅
+If visible → database is connected successfully ✅
 
-📌 Features Overview
-User registration & authentication (JWT)
-Create, like, and comment on posts
-Follow / unfollow users
-View user profiles
 💡 Future Improvements
+📸 Features
 Image upload support
 Real-time notifications
-Responsive UI enhancements
-Deployment (Render / Vercel / MongoDB Atlas)
+🎨 UI/UX
+Responsive design improvements
+Modern UI redesign
+🚀 Deployment
+Deploy backend (Render / Railway)
+Deploy frontend (Vercel / Netlify)
+Use MongoDB Atlas (cloud database)
